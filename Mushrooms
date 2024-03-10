@@ -1,0 +1,28 @@
+# Install required modules
+!pip install langchain
+!pip install OpenAI
+!pip install streamlit
+!pip install python-dotenv
+
+OPENAI_API_KEY = "my-key"
+
+# Import modules
+import streamlit as st 
+import os
+from langchain.llms import OpenAI
+
+# Load environment variables
+load_dotenv()
+from dotenv import load_dotenv
+
+
+# Export the OpenAI API key as an environment variable
+%env OPENAI_API_KEY="my-api-key"
+
+# Retrieve the OpenAI API key from environment variables
+API_KEY = os.environ.get('OPENAI_API_KEY')
+
+llm = OpenAI(openai_api_key=OPENAI_API_KEY, temperature=0.9)
+
+haiku = llm("write a haiku about the mushrooms")
+print(haiku)
